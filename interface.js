@@ -71,3 +71,40 @@ async function sendGPT(message) {
     await waitUntilDone();
     return getLatestMessage();
 }
+
+async function processResponse(msg) {
+    if(msg.startsWith("/request-tool:")) {
+        var tool = msg.slice(15).split(" ")[0];
+
+        switch(tool) {
+            case "google":
+                await sendGPT("/tool-response:\n" + prompt("tool response (google)"));
+                break;
+            case "pedia":
+                await sendGPT("/request-failed:");
+                break;
+        }
+    }
+}
+
+function startListening() {
+    var lastIG = false;
+    var observer = new MutationObserver(async function() {
+        var ig = isGenerating();
+
+        if(!ig && ig !== lastIG) {
+            await wait(200);
+            processResponse(getLatestMessage());
+        }
+
+        lastIG = ig;
+    });
+
+    observer.observe(document, { attributes: true, subtree: true, childList: true });
+}
+
+var thePrompt = prompt("Enter init prompt:");
+var response = (await sendGPT(thePrompt)).trim();
+
+if(response !== "/init:") throw new Error("Not init!");
+startListening();
