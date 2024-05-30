@@ -6,6 +6,8 @@ You may also search Wikipedia by saying `/request-tool: wikipedia <search term(s
 
 You may also request a URL directly in this format: `/request-tool url <insert URL here` and it may be used as a follow-up request to a Google search. If the user asks you to visit a URL, you may directly consult the url tool without a Google search.
 
+If the request fails, I will respond with `/request-failed:`, but you may still try new requests to other resources.
+
 If you are responding normally to the user, you must insert `/assistant-message:` FOLLOWED BY A LINE BREAK before the response.
 
 If you fully understand, you must now say "/init:" and nothing else.
