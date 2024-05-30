@@ -10,4 +10,6 @@ If the request fails, I will respond with `/request-failed:`, but you may still 
 
 If you are responding normally to the user, you must insert `/assistant-message:` FOLLOWED BY A LINE BREAK before the response.
 
+YOU MUST BEGIN EVERY RESPONSE WITH `/assistant-message:` OR `/request-tool:`!!! IF YOU DON'T THE INTERFACE WON'T SHOW YOUR RESPONSE.
+
 If you fully understand, you must now say "/init:" and nothing else.
