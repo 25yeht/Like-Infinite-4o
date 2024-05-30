@@ -26,6 +26,39 @@ async function waitUntilInput() {
     await promise;
 }
 
+function isGenerating() {
+    return !!document.querySelector("[aria-label='Stop generating']");
+}
+
+function getLatestMessage() {
+    var messages = document.querySelectorAll("[data-message-author-role=assistant]");
+    return messages[messages.length - 1].textContent;
+}
+
+async function waitUntilDone() {
+    var lastIG = false;
+
+    var resolve;
+    var promise = new Promise(function(r) {
+        resolve = r;
+    });
+    
+    var observer = new MutationObserver(function() {
+        var ig = isGenerating();
+
+        if(!ig && ig !== lastIG) {
+            observer.disconnect();
+            resolve();
+        }
+
+        lastIG = ig;
+    });
+
+    observer.observe(document, { attributes: true, subtree: true, childList: true });
+
+    await promise;
+}
+
 async function sendGPT(message) {
     updateEls();
 
@@ -35,4 +68,5 @@ async function sendGPT(message) {
     sendBtn.click();
 
     await waitUntilDone();
+    return getLatestMessage();
 }
