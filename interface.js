@@ -57,6 +57,7 @@ async function waitUntilDone() {
     observer.observe(document, { attributes: true, subtree: true, childList: true });
 
     await promise;
+    await wait(200);
 }
 
 async function sendGPT(message) {
