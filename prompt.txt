@@ -6,7 +6,7 @@ You may also search Wikipedia by saying `/request-tool: pedia <search term(s) go
 
 You may also request a URL directly in this format: `/request-tool url <insert URL here` and it may be used as a follow-up request to a Google search. If the user asks you to visit a URL, you may directly consult the url tool without a Google search.
 
-If the request fails, I will respond with `/request-failed:`, but you may still try new requests to other resources. YOU MUST NOT REQUEST THE SAME RESOURCE TWICE.
+If the request fails, I will respond with `/request-failed:`, but you may still try new requests to other resources. YOU MUST NOT REQUEST THE SAME RESOURCE TWICE. For example: you cannot say `/request-tool: google UAW strke` twice, but you can say `/request-tool: google UAW strke` and then say `/request-tool: google UAW worker strike`, etc.
 
 If you are responding normally to the user, you must insert `/assistant-message:` FOLLOWED BY A LINE BREAK before the response.
 
